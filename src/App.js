@@ -8,7 +8,8 @@ class App extends Component {
     super();
 
     this.state = {
-      name: "Murder"
+      name: {firstName: "Murder", lastName: "R"},
+      company: 'IPPV'
     };
   }
   render() {
@@ -16,9 +17,17 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>hi {this.state.name}</p>
+          <p>hi {this.state.name.firstName} {this.state.name.lastName}, I work at {this.state.company}.</p>
           <button onClick={() => {
-            this.setState({name: "Reza"}); // find any name in this object and update state value
+            // Shallow merge
+            this.setState( 
+              () => {
+                return { name: {firstName: "Reza", lastName: "Rahimloo"} } 
+              }
+              , () => {
+                console.log(this.state);
+            }); // find any name in this object and update state value
+            
           }} >Change name</button>
         </header>
       </div>
