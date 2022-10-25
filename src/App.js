@@ -8,28 +8,38 @@ class App extends Component {
     super();
 
     this.state = {
-      name: {firstName: "Murder", lastName: "R"},
-      company: 'IPPV'
+      monsters: [
+        {
+          name: 'Linda',
+          id: 1
+        },
+        {
+          name: 'Frank',
+          id: 2
+        },
+        {
+          name: 'Jacky',
+          id: 3
+        }, 
+        {
+          name: 'Murder',
+          id: 4
+        }
+      ]
     };
   }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>hi {this.state.name.firstName} {this.state.name.lastName}, I work at {this.state.company}.</p>
-          <button onClick={() => {
-            // Shallow merge
-            this.setState( 
-              () => {
-                return { name: {firstName: "Reza", lastName: "Rahimloo"} } 
-              }
-              , () => {
-                console.log(this.state);
-            }); // find any name in this object and update state value
-            
-          }} >Change name</button>
-        </header>
+        {
+          this.state.monsters.map(monster =>  { 
+            return (
+              <div key={monster.id}>
+                <h1>{monster.name}</h1>
+              </div>
+              )
+            })
+        }
       </div>
     );
   }
